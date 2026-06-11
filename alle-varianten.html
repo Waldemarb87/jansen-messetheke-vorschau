@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Messetheke — Designvorschläge v2 · Pflegedienst Monika Jansen GmbH</title>
+<style>
+  :root {
+    --firmengruen: #009366;
+    --zwischen: #1AAB3A;
+    --lime: #32CD32;
+    --dunkel: #0E4631;
+    --ink: #1a1d1b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #ECEFEC;
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    padding-bottom: 120px;
+  }
+
+  header {
+    background: var(--dunkel);
+    color: #fff;
+    padding: 56px 7vw 48px;
+  }
+  header .ueberschrift {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 40px;
+    line-height: 1.15;
+  }
+  header .ueberschrift em { font-style: italic; color: #7fd6b4; }
+  header .sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #b9d6c9;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  header .meta { margin-top: 22px; display: flex; gap: 32px; flex-wrap: wrap; font-size: 14px; color: #d7e8df; }
+  header .meta b { color: #fff; }
+
+  section.variante { padding: 64px 7vw 16px; }
+  .v-kopf { display: flex; align-items: baseline; gap: 18px; }
+  .v-nr { font-family: Georgia, serif; font-size: 54px; color: var(--firmengruen); line-height: 1; }
+  .v-titel { font-family: Georgia, serif; font-size: 27px; }
+  .v-farbe {
+    display: inline-block;
+    margin-left: 12px;
+    padding: 3px 14px;
+    border-radius: 99px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #fff;
+    vertical-align: middle;
+  }
+  .v-text { max-width: 720px; margin: 8px 0 30px 72px; font-size: 15px; line-height: 1.6; color: #41504a; }
+
+  .panels { display: flex; align-items: flex-end; gap: 26px; flex-wrap: wrap; }
+  .panel-wrap { text-align: center; }
+  .panel {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 22px 50px -18px rgba(14, 70, 49, 0.45);
+  }
+  .label { margin-top: 12px; font-size: 12.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #5a6b63; }
+  .label b { color: var(--ink); }
+
+  /* 1 cm = 7 px → Front 703.5 × 703.5 · Seite 216.3 × 707 */
+  .front { width: 703.5px; height: 703.5px; }
+  .seite { width: 216.3px; height: 707px; }
+
+  /* ===== Euer Design: flächig, Logo gross mittig, Tagline oben rechts ===== */
+  .flat .front .tagline {
+    position: absolute;
+    top: 11%;
+    right: 8%;
+    width: 42%;
+  }
+  .flat .front .logo {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -46%);
+    width: 86%;
+  }
+  .flat .front .emblem-s {
+    position: absolute;
+    top: 50%; left: 7%;
+    transform: translateY(-46%);
+    width: 30%;
+  }
+  .flat .front .text-s {
+    position: absolute;
+    top: 50%; right: 7%;
+    transform: translateY(-46%);
+    width: 52%;
+  }
+  .flat .seite .emblem {
+    position: absolute;
+    top: 9%; left: 50%;
+    transform: translateX(-50%);
+    width: 64%;
+  }
+  .flat .seite .vtext {
+    position: absolute;
+    top: 38%; bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    font-size: 16.5px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+  .schrift-weiss .vtext { color: #fff; }
+  .schrift-schwarz .vtext { color: #10130F; }
+
+  .bg-firmengruen .panel { background: var(--firmengruen); }
+  .bg-zwischen .panel { background: var(--zwischen); }
+  .bg-lime .panel { background: var(--lime); }
+
+  /* ===== WOW ===== */
+  .wow .panel { background: #08291C; }
+  .wow .glow1, .wow .glow2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+  }
+  .wow .front .glow1 { width: 620px; height: 620px; left: -160px; top: -180px; background: rgba(0,147,102,0.75); }
+  .wow .front .glow2 { width: 540px; height: 540px; right: -150px; bottom: -170px; background: rgba(41,158,72,0.45); }
+  .wow .seite .glow1 { width: 360px; height: 360px; left: -120px; top: -100px; background: rgba(0,147,102,0.7); }
+  .wow .seite .glow2 { width: 320px; height: 320px; right: -120px; bottom: -110px; background: rgba(41,158,72,0.4); }
+  .wow .ringdeko {
+    position: absolute;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.14);
+  }
+  .wow .front .r1 { width: 880px; height: 880px; right: -300px; top: -300px; }
+  .wow .front .r2 { width: 1150px; height: 1150px; right: -420px; top: -420px; border-color: rgba(255,255,255,0.08); }
+  .wow .seite .r1 { width: 420px; height: 420px; left: -140px; bottom: -120px; }
+  .wow .front .inhalt {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 34px;
+    padding-bottom: 36px;
+  }
+  .wow .tagline-hero { width: 44%; filter: drop-shadow(0 0 26px rgba(50,205,50,0.35)); }
+  .wow .emblem-hero {
+    width: 33%;
+    filter: drop-shadow(0 18px 60px rgba(0,0,0,0.5)) drop-shadow(0 0 50px rgba(0,147,102,0.55));
+  }
+  .wow .wortmarke { width: 56%; }
+  .wow .web {
+    position: absolute; bottom: 44px; left: 0; right: 0; z-index: 2;
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 17px;
+    letter-spacing: 4px;
+  }
+  .wow .seite .inhalt {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .wow .seite .emblem {
+    width: 60%; margin-top: 64px;
+    filter: drop-shadow(0 0 34px rgba(0,147,102,0.6));
+  }
+  .wow .seite .tagline-s { width: 78%; margin-top: 48px; }
+  .wow .seite .vtext {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: rgba(255,255,255,0.92);
+    font-size: 15px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    flex: 1;
+    margin: 36px 0 52px;
+    display: flex; align-items: center;
+  }
+
+  footer { margin-top: 72px; padding: 0 7vw; font-size: 13.5px; color: #5a6b63; line-height: 1.7; max-width: 900px; }
+  footer b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ueberschrift">Messetheke <em>Designvorschläge v2</em> — nach Ihrer Vorlage</div>
+  <div class="sub">Pflegedienst Monika Jansen GmbH · Ihre Grünen Engel</div>
+  <div class="meta">
+    <span>Layout: <b>Ihre Vorlage — flächig, Logo groß mittig</b></span>
+    <span>Front: <b>100,5 × 100,5 cm</b></span>
+    <span>Seiten: <b>2 × 30,9 × 101 cm</b></span>
+    <span>Basis: <b>Original-Vektorlogo</b></span>
+  </div>
+</header>
+
+<!-- 1: Firmengrün / weiß -->
+<section class="variante flat schrift-weiss bg-firmengruen">
+  <div class="v-kopf"><span class="v-nr">1</span><span class="v-titel">Ihr Design — Firmengrün<span class="v-farbe" style="background:#009366">#009366</span></span></div>
+  <p class="v-text">Exakt Ihre Vorlage, nur im echten Firmengrün aus Ihrem Vektorlogo statt des ChatGPT-Grüns. Weiße Schrift, weiße Hände-Scheibe.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Ihre Grünen Engel</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="tagline" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+        <img class="logo" src="logo-weiss-voll.svg" alt="Pflegedienst Monika Jansen GmbH">
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Pflegedienst Monika Jansen</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2: Firmengrün / schwarz -->
+<section class="variante flat schrift-schwarz bg-firmengruen">
+  <div class="v-kopf"><span class="v-nr">2</span><span class="v-titel">Firmengrün — schwarze Schrift<span class="v-farbe" style="background:#009366">#009366</span></span></div>
+  <p class="v-text">Gleiche Fläche, Wortmarke und Schriftzug in Schwarz. Die Hände-Scheibe bleibt weiß.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Ihre Grünen Engel</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="tagline" src="tagline-schwarz.svg" alt="Ihre Grünen Engel">
+        <img class="emblem-s" src="emblem-voll-weiss.svg" alt="">
+        <img class="text-s" src="text-schwarz.svg" alt="Pflegedienst Monika Jansen GmbH">
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Pflegedienst Monika Jansen</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3: Zwischenfarbe / weiß -->
+<section class="variante flat schrift-weiss bg-zwischen">
+  <div class="v-kopf"><span class="v-nr">3</span><span class="v-titel">Zwischenton<span class="v-farbe" style="background:#1AAB3A">#1AAB3A</span></span></div>
+  <p class="v-text">Die Mitte zwischen dem Grün Ihrer Vorlage (#038943) und Lime — frischer als das Firmengrün, aber noch satt und seriös.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Ihre Grünen Engel</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="tagline" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+        <img class="logo" src="logo-weiss-voll.svg" alt="Pflegedienst Monika Jansen GmbH">
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Pflegedienst Monika Jansen</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4: Zwischenfarbe / schwarz -->
+<section class="variante flat schrift-schwarz bg-zwischen">
+  <div class="v-kopf"><span class="v-nr">4</span><span class="v-titel">Zwischenton — schwarze Schrift<span class="v-farbe" style="background:#1AAB3A">#1AAB3A</span></span></div>
+  <p class="v-text">Zwischenton mit schwarzer Wortmarke — kräftiger Kontrast bei frischer Fläche.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Ihre Grünen Engel</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="tagline" src="tagline-schwarz.svg" alt="Ihre Grünen Engel">
+        <img class="emblem-s" src="emblem-voll-weiss.svg" alt="">
+        <img class="text-s" src="text-schwarz.svg" alt="Pflegedienst Monika Jansen GmbH">
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Pflegedienst Monika Jansen</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5: Lime / weiß -->
+<section class="variante flat schrift-weiss bg-lime">
+  <div class="v-kopf"><span class="v-nr">5</span><span class="v-titel">Lime<span class="v-farbe" style="background:#32CD32">#32CD32</span></span></div>
+  <p class="v-text">Volle Frische: Lime-Grün als Fläche. Fällt auf der Messe maximal auf — weiße Schrift wird hier etwas weicher im Kontrast.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Ihre Grünen Engel</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="tagline" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+        <img class="logo" src="logo-weiss-voll.svg" alt="Pflegedienst Monika Jansen GmbH">
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Pflegedienst Monika Jansen</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6: Lime / schwarz -->
+<section class="variante flat schrift-schwarz bg-lime">
+  <div class="v-kopf"><span class="v-nr">6</span><span class="v-titel">Lime — schwarze Schrift<span class="v-farbe" style="background:#32CD32">#32CD32</span></span></div>
+  <p class="v-text">Lime mit schwarzer Schrift — der stärkste Kontrast aller Varianten, sehr plakativ.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Ihre Grünen Engel</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="tagline" src="tagline-schwarz.svg" alt="Ihre Grünen Engel">
+        <img class="emblem-s" src="emblem-voll-weiss.svg" alt="">
+        <img class="text-s" src="text-schwarz.svg" alt="Pflegedienst Monika Jansen GmbH">
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite"><img class="emblem" src="emblem-voll-weiss.svg" alt=""><div class="vtext">Pflegedienst Monika Jansen</div></div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7: WOW -->
+<section class="variante wow">
+  <div class="v-kopf"><span class="v-nr">7</span><span class="v-titel">WOW — Nachtgrün mit Lichtaura</span></div>
+  <p class="v-text">Der Auftritt, an dem niemand vorbeiläuft: tiefes Nachtgrün, dahinter leuchtet Ihr Firmengrün wie eine
+  Aura auf. Der Handschlag schwebt mit Lichtschein in der Mitte, „Ihre Grünen Engel" wird zur großen Bühne darüber.
+  Edel wie ein Premium-Messestand — und zu 100 % in Ihren Farben.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <div class="glow1"></div><div class="glow2"></div><div class="ringdeko r1"></div>
+        <div class="inhalt">
+          <img class="emblem" src="emblem-voll-weiss.svg" alt="">
+          <img class="tagline-s" src="tagline-weiss.svg" alt="">
+          <div class="vtext">Pflegedienst Monika Jansen</div>
+        </div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <div class="glow1"></div><div class="glow2"></div>
+        <div class="ringdeko r1"></div><div class="ringdeko r2"></div>
+        <div class="inhalt">
+          <img class="tagline-hero" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+          <img class="emblem-hero" src="emblem-voll-weiss.svg" alt="">
+          <img class="wortmarke" src="text-weiss.svg" alt="Pflegedienst Monika Jansen GmbH">
+        </div>
+        <div class="web">www.pflegedienst-jansen.de</div>
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <div class="glow1"></div><div class="glow2"></div><div class="ringdeko r1"></div>
+        <div class="inhalt">
+          <img class="emblem" src="emblem-voll-weiss.svg" alt="">
+          <img class="tagline-s" src="tagline-weiss.svg" alt="">
+          <div class="vtext">Ihre Grünen Engel</div>
+        </div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Hinweise:</b> Alle Varianten übernehmen Ihr Layout (flächiger Hintergrund, Logo groß mittig, Schriftzug oben
+  rechts) — nur die Farben sind exakt definiert: Firmengrün #009366 aus Ihrem Vektorlogo, Lime #32CD32,
+  Zwischenton #1AAB3A (Mitte zwischen dem Grün Ihrer Vorlage #038943 und Lime). Bei den schwarzen Varianten
+  bleibt die Hände-Scheibe weiß, Wortmarke und Schriftzug sind schwarz. Alles basiert auf den
+  Original-Vektordateien — gestochen scharf in jeder Größe. Nach Ihrer Wahl erstelle ich die finalen
+  Druck-PDFs in 1:1-Größe für bannerstop.
+</footer>
+
+</body>
+</html>
