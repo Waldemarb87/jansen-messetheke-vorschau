@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Messetheke — Designvorschläge · Pflegedienst Monika Jansen GmbH</title>
+<style>
+  :root {
+    --gruen: #009366;
+    --dunkel: #0E4631;
+    --hell: #299E48;
+    --ink: #1a1d1b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #ECEFEC;
+    color: var(--ink);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    padding-bottom: 120px;
+  }
+
+  /* ===== Kopfbereich ===== */
+  header {
+    background: var(--dunkel);
+    color: #fff;
+    padding: 64px 8vw 56px;
+  }
+  header .ueberschrift {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 44px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+  }
+  header .ueberschrift em { font-style: italic; color: #7fd6b4; }
+  header .sub {
+    margin-top: 14px;
+    font-size: 15px;
+    color: #b9d6c9;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  header .meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 36px;
+    font-size: 14px;
+    color: #d7e8df;
+  }
+  header .meta b { color: #fff; font-weight: 600; }
+
+  /* ===== Varianten ===== */
+  section.variante { padding: 72px 8vw 24px; }
+  .v-kopf { display: flex; align-items: baseline; gap: 20px; margin-bottom: 8px; }
+  .v-nr {
+    font-family: Georgia, serif;
+    font-size: 64px;
+    color: var(--gruen);
+    line-height: 1;
+  }
+  .v-titel {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+  }
+  .v-text {
+    max-width: 720px;
+    margin: 10px 0 36px 84px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: #41504a;
+  }
+
+  .panels {
+    display: flex;
+    align-items: flex-end;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .panel-wrap { text-align: center; }
+  .panel {
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 22px 50px -18px rgba(14, 70, 49, 0.45);
+  }
+  .panel .safe {
+    position: absolute;
+    inset: 32px;
+    border: 1px dashed rgba(255,255,255,0.30);
+    pointer-events: none;
+    z-index: 10;
+  }
+  .seite .safe { inset: 22px 18px; }
+  .label {
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: #5a6b63;
+  }
+  .label b { color: var(--ink); }
+
+  /* Maße: 1 cm = 7 px  →  Front 703.5 × 703.5 · Seite 216.3 × 707 */
+  .front { width: 703.5px; height: 703.5px; }
+  .seite { width: 216.3px; height: 707px; }
+
+  /* ===== Variante 1 — Klassik ===== */
+  .v1 .panel { background: radial-gradient(circle at 50% 38%, #00a071 0%, var(--gruen) 62%); }
+  .v1 .front .inhalt {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 44px;
+  }
+  .v1 .tagline { width: 300px; opacity: 0.96; }
+  .v1 .logo { width: 84%; }
+  .v1 .web {
+    position: absolute; bottom: 52px; left: 0; right: 0;
+    text-align: center;
+    color: rgba(255,255,255,0.92);
+    font-size: 19px; letter-spacing: 3.5px;
+  }
+  .v1 .seite .inhalt {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .v1 .seite .emblem { width: 62%; margin-top: 72px; }
+  .v1 .seite .rule { width: 36px; height: 2px; background: rgba(255,255,255,0.65); margin: 48px 0; }
+  .v1 .seite .vtext {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: #fff;
+    font-size: 17px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex: 1;
+    margin-bottom: 64px;
+    display: flex; align-items: center;
+  }
+
+  /* ===== Variante 2 — Premium Verlauf ===== */
+  .v2 .panel { background: linear-gradient(150deg, var(--dunkel) 0%, #006b49 52%, var(--gruen) 100%); }
+  .v2 .wasserzeichen {
+    position: absolute;
+    width: 150%;
+    top: -32%; right: -42%;
+    opacity: 0.08;
+    z-index: 1;
+  }
+  .v2 .seite .wasserzeichen { width: 420%; top: auto; bottom: -10%; right: -160%; opacity: 0.07; }
+  .v2 .front .inhalt {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 40px;
+  }
+  .v2 .emblem { width: 35%; }
+  .v2 .wortmarke { width: 62%; }
+  .v2 .tagline { width: 270px; margin-top: -6px; }
+  .v2 .web {
+    position: absolute; bottom: 48px; left: 0; right: 0; z-index: 2;
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    font-size: 17px; letter-spacing: 3px;
+  }
+  .v2 .seite .inhalt {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .v2 .seite .emblem { width: 56%; margin-top: 70px; }
+  .v2 .seite .vtext {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: rgba(255,255,255,0.95);
+    font-size: 16px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    flex: 1;
+    margin: 40px 0 60px;
+    display: flex; align-items: center;
+  }
+
+  /* ===== Variante 3 — Markant ===== */
+  .v3 .panel { background: var(--dunkel); }
+  .v3 .bogen1 {
+    position: absolute;
+    width: 1100px; height: 1100px;
+    border-radius: 50%;
+    background: var(--gruen);
+    left: -340px; bottom: -560px;
+    z-index: 1;
+  }
+  .v3 .bogen2 {
+    position: absolute;
+    width: 1100px; height: 1100px;
+    border-radius: 50%;
+    border: 3px solid rgba(41,158,72,0.85);
+    left: -340px; bottom: -520px;
+    background: transparent;
+    z-index: 1;
+  }
+  .v3 .seite .bogen1 { width: 700px; height: 700px; left: -242px; bottom: -480px; }
+  .v3 .seite .bogen2 { width: 700px; height: 700px; left: -242px; bottom: -450px; }
+  .v3 .front .inhalt {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 38px;
+  }
+  .v3 .tagline { width: 300px; align-self: flex-end; margin-right: 70px; }
+  .v3 .logo { width: 86%; }
+  .v3 .web {
+    position: absolute; bottom: 50px; left: 0; right: 0; z-index: 2;
+    text-align: center;
+    color: rgba(255,255,255,0.95);
+    font-size: 19px; letter-spacing: 3.5px;
+  }
+  .v3 .seite .inhalt {
+    position: absolute; inset: 0; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .v3 .seite .emblem { width: 62%; margin-top: 72px; }
+  .v3 .seite .tagline-s { width: 76%; margin-top: 56px; }
+
+  /* ===== Fußnote ===== */
+  footer {
+    margin-top: 80px;
+    padding: 0 8vw;
+    font-size: 13.5px;
+    color: #5a6b63;
+    line-height: 1.7;
+    max-width: 900px;
+  }
+  footer b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="ueberschrift">Messetheke <em>Designvorschläge</em></div>
+  <div class="sub">Pflegedienst Monika Jansen GmbH · Ihre Grünen Engel</div>
+  <div class="meta">
+    <span>Vorlage: <b>bannerstop Messetheke Easy</b></span>
+    <span>Front: <b>100,5 × 100,5 cm</b></span>
+    <span>Seiten: <b>2 × 30,9 × 101 cm</b></span>
+    <span>Basis: <b>Original-Vektorlogo (gestochen scharf in jeder Größe)</b></span>
+  </div>
+</header>
+
+<!-- ============ VARIANTE 1 ============ -->
+<section class="variante v1">
+  <div class="v-kopf"><span class="v-nr">1</span><span class="v-titel">Klassik — Ihr Logo, invertiert</span></div>
+  <p class="v-text">Die ruhige, souveräne Lösung: Ihr Firmengrün als ganze Fläche, das komplette Logo in
+  Weiß — exakt Ihre Visitenkarte, nur umgekehrt. Der feine Lichtschein hinter dem Logo gibt der Fläche
+  Tiefe, ohne unruhig zu wirken. Auf den Seiten führt das Handschlag-Emblem die Marke fort.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <div class="rule"></div>
+          <div class="vtext">Pflegedienst Monika Jansen</div>
+        </div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <div class="inhalt">
+          <img class="tagline" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+          <img class="logo" src="logo-weiss-ring.svg" alt="Pflegedienst Monika Jansen GmbH">
+        </div>
+        <div class="web">www.pflegedienst-jansen.de</div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <div class="rule"></div>
+          <div class="vtext">Ihre Grünen Engel</div>
+        </div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VARIANTE 2 ============ -->
+<section class="variante v2">
+  <div class="v-kopf"><span class="v-nr">2</span><span class="v-titel">Premium — Tiefer Verlauf mit Wasserzeichen</span></div>
+  <p class="v-text">Hochwertig wie ein Messestand der großen Marken: ein tiefer Verlauf von Dunkelgrün ins
+  Firmengrün, dahinter Ihr Handschlag als riesiges, dezentes Wasserzeichen. Das Logo steht gestapelt und
+  zentriert — Emblem, Wortmarke, darunter der geschwungene Schriftzug. Wirkt edel und modern zugleich.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <img class="wasserzeichen" src="emblem-ring-weiss.svg" alt="">
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <div class="vtext">Ihre Grünen Engel</div>
+        </div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <img class="wasserzeichen" src="emblem-ring-weiss.svg" alt="">
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <img class="wortmarke" src="text-weiss.svg" alt="Pflegedienst Monika Jansen GmbH">
+          <img class="tagline" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+        </div>
+        <div class="web">www.pflegedienst-jansen.de</div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <img class="wasserzeichen" src="emblem-ring-weiss.svg" alt="">
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <div class="vtext">Pflegedienst Monika Jansen</div>
+        </div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VARIANTE 3 ============ -->
+<section class="variante v3">
+  <div class="v-kopf"><span class="v-nr">3</span><span class="v-titel">Markant — Der große Bogen</span></div>
+  <p class="v-text">Der Hingucker für die Messe: Dunkelgrün oben, das Firmengrün schwingt als großer Bogen
+  über die Fläche — das Motiv Ihrer Visitenkarte, ins Große übersetzt. Der helle Konturbogen nimmt das
+  Grün des Schriftzugs auf. Maximale Fernwirkung, sofort als Jansen erkennbar.</p>
+  <div class="panels">
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <div class="bogen1"></div>
+        <div class="bogen2"></div>
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <img class="tagline-s" src="tagline-weiss.svg" alt="">
+        </div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel front">
+        <div class="bogen1"></div>
+        <div class="bogen2"></div>
+        <div class="inhalt">
+          <img class="tagline" src="tagline-weiss.svg" alt="Ihre Grünen Engel">
+          <img class="logo" src="logo-weiss-ring.svg" alt="Pflegedienst Monika Jansen GmbH">
+        </div>
+        <div class="web">www.pflegedienst-jansen.de</div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Front · <b>100,5 × 100,5 cm</b></div>
+    </div>
+    <div class="panel-wrap">
+      <div class="panel seite">
+        <div class="bogen1"></div>
+        <div class="bogen2"></div>
+        <div class="inhalt">
+          <img class="emblem" src="emblem-ring-weiss.svg" alt="">
+          <img class="tagline-s" src="tagline-weiss.svg" alt="">
+        </div>
+        <div class="safe"></div>
+      </div>
+      <div class="label">Seite · <b>30,9 × 101 cm</b></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Hinweise:</b> Alle Vorschläge basieren auf Ihrem Original-Vektorlogo aus den Illustrator-Dateien —
+  der Druck wird dadurch in jeder Größe gestochen scharf. Die gestrichelte Linie zeigt den
+  Sicherheitsbereich der bannerstop-Vorlage (wichtige Elemente bleiben innerhalb). Farben:
+  Firmengrün #009366 · Dunkelgrün #0E4631 · Akzentgrün #299E48 — exakt aus Ihrem Logo übernommen.
+  Nach Ihrer Entscheidung erstelle ich die finalen Druck-PDFs in 1:1-Größe (Front 100,5 × 100,5 cm,
+  Seiten 30,9 × 101 cm) als Vektor-PDF, druckfertig für bannerstop.
+</footer>
+
+</body>
+</html>
